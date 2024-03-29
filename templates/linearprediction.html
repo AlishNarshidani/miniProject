@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block title %}Linear Prediction{% endblock title %}
+
+{% block body %}
+
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto bg-rose-50">
+      <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{% block heading %} Stock Price Prediction {% endblock heading %} </h1>
+      </div>
+        <form action="/prediction/linearprediction" method="post">
+            {% csrf_token %}
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+                <div class="relative flex-grow w-full">
+                <label for="full-name" class="leading-7 text-sm text-gray-600">Stock Name</label>
+                  <select id="stock_name" name="stock_name" class="form-select" aria-label="Default select example" required>
+                    <option value="" selected>--Choose Stock--</option>
+                    <option value="AAVE-USD">Aave (AAVE)</option>
+                    <option value="AAP">Advance Auto Parts Inc. (AAP)</option>
+                    <option value="ADANIGREEN.BO">Adani Green Energy Ltd. (ADANIGREEN.BO)</option>
+                    <option value="ADANIPORTS.BO">Adani Ports and Special Economic Zone Ltd. (ADANIPORTS.BO)</option>
+                    <option value="AMD">Advanced Micro Devices Inc. (AMD)</option>
+                    <option value="AMD-USD">Advanced Micro Devices Inc. (AMD-USD)</option>
+                    <option value="ALGO-USD">Algorand (ALGO)</option>
+                    <option value="GOOGL-USD">Alphabet Inc. (GOOGL-USD)</option>
+                    <option value="AMZN">Amazon.com Inc. (AMZN)</option>
+                    <option value="AMZN-USD">Amazon.com Inc. (AMZN-USD)</option>
+                    <option value="AAPL">Apple Inc. (AAPL)</option>
+                    <option value="AAPL-USD">Apple Inc. (AAPL-USD)</option>
+                    <option value="ARPA-USD">ARPA Chain (ARPA-USD)</option>
+                    <option value="ASIANPAINT.BO">Asian Paints Ltd. (ASIANPAINT.BO)</option>
+                    <option value="ASIANPAINT.NS">Asian Paints Ltd. (ASIANPAINT.NS)</option>
+                    <option value="BTC-USD">Bitcoin (BTC-USD)</option>
+                    <option value="ATOM1-USD">Cosmos (ATOM)</option>
+                    <option value="ATOM1-USD">Cosmos (ATOM)</option>
+                    <option value="COST">Costco Wholesale Corporation (COST)</option>
+                    <option value="CIPLA.BO">Cipla Ltd. (CIPLA.BO)</option>
+                    <option value="CIPLA.NS">Cipla Ltd. (CIPLA.NS)</option>
+                    <option value="CRM">Salesforce.com Inc. (CRM)</option>
+                    <option value="CRM">Salesforce.com Inc. (CRM)</option>
+                    <option value="CRM">Salesforce.com Inc. (CRM)</option>
+                    <option value="CSCO">Cisco Systems Inc. (CSCO)</option>
+                    <option value="CVS">CVS Health Corporation (CVS)</option>
+                    <option value="DG">Dollar General Corporation (DG)</option>
+                    <option value="DLTR">Dollar Tree Inc. (DLTR)</option>
+                    <option value="DIS">The Walt Disney Company (DIS)</option>
+                    <option value="DIVISLAB.BO">Divi's Laboratories Ltd. (DIVISLAB.BO)</option>
+                    <option value="DIVISLAB.NS">Divi's Laboratories Ltd. (DIVISLAB.NS)</option>
+                    <option value="DOGE-USD">Dogecoin (DOGE)</option>
+                    <option value="DOGE-USD">Dogecoin (DOGE)</option>
+                    <option value="DRREDDY.BO">Dr. Reddy's Laboratories Ltd. (DRREDDY.BO)</option>
+                    <option value="DRREDDY.NS">Dr. Reddy's Laboratories Ltd. (DRREDDY.NS)</option>
+                    <option value="EOS-USD">EOS (EOS)</option>
+                    <option value="EOS-USD">EOS (EOS)</option>
+                    <option value="EICHERMOT.BO">Eicher Motors Ltd. (EICHERMOT.BO)</option>
+                    <option value="EICHERMOT.NS">Eicher Motors Ltd. (EICHERMOT.NS)</option>
+                    <option value="ETC-USD">Ethereum Classic (ETC)</option>
+                    <option value="ETH-USD">Ethereum (ETH)</option>
+                    <option value="ETH-USD">Ethereum (ETH)</option>
+                    <option value="F">Ford Motor Company (F)</option>
+                    <option value="FCAU">Stellantis N.V. (FCAU)</option>
+                    <option value="FB">Facebook Inc. (FB)</option>
+                    <option value="FB-USD">Facebook Inc. (FB-USD)</option>
+                    <option value="FIL-USD">Filecoin (FIL)</option>
+                    <option value="FIL-USD">Filecoin (FIL)</option>
+                    <option value="GM">General Motors Company (GM)</option>
+                    <option value="GOOGL">Alphabet Inc. (GOOGL)</option>
+                    <option value="GOOGL-USD">Alphabet Inc. (GOOGL-USD)</option>
+                    <option value="GPS">Gap Inc. (GPS)</option>
+                    <option value="GRASIM.BO">Grasim Industries Ltd. (GRASIM.BO)</option>
+                    <option value="GRASIM.NS">Grasim Industries Ltd. (GRASIM.NS)</option>
+                    <option value="GS">Goldman Sachs Group Inc. (GS)</option>
+                    <option value="GS">Goldman Sachs Group Inc. (GS)</option>
+                    <option value="GS">Goldman Sachs Group Inc. (GS)</option>
+                    <option value="HD">The Home Depot Inc. (HD)</option>
+                    <option value="HDFC.BO">Housing Development Finance Corporation Ltd. (HDFC.BO)</option>
+                    <option value="HDFC.NS">Housing Development Finance Corporation Ltd. (HDFC.NS)</option>
+                    <option value="HDFCBANK.BO">HDFC Bank Ltd. (HDFCBANK.BO)</option>
+                    <option value="HDFCBANK.NS">HDFC Bank Ltd. (HDFCBANK.NS)</option>
+                    <option value="HDFCLIFE.BO">HDFC Life Insurance Company Ltd. (HDFCLIFE.BO)</option>
+                    <option value="HINDALCO.BO">Hindalco Industries Ltd. (HINDALCO.BO)</option>
+                    <option value="HINDALCO.NS">Hindalco Industries Ltd. (HINDALCO.NS)</option>
+                    <option value="HINDUNILVR.BO">Hindustan Unilever Ltd. (HINDUNILVR.BO)</option>
+                    <option value="HINDUNILVR.NS">Hindustan Unilever Ltd. (HINDUNILVR.NS)</option>
+                    <option value="ICICIBANK.BO">ICICI Bank Ltd. (ICICIBANK.BO)</option>
+                    <option value="ICICIBANK.NS">ICICI Bank Ltd. (ICICIBANK.NS)</option>
+                    <option value="ICP1-USD">Internet Computer (ICP)</option>
+                    <option value="IRFC.NS">Indian Railway Finance Corporation Ltd. (IRFC.NS)</option>
+                    <option value="IREDA.NS">Indian Renewable Energy Development Agency Ltd. (IREDA.NS)</option>
+                    <option value="IRCTC.NS">Indian Railway Catering and Tourism Corporation Ltd. (IRCTC.NS)</option>
+                    <option value="NHPC.NS">NHPC Ltd. (NHPC.NS)</option>
+                    <option value="BEL.NS">Bharat Electronics Ltd. (BEL.NS)</option>
+                    <option value="BPCL.NS">Bharat Petroleum Corporation Ltd. (BPCL.NS)</option>
+                    <option value="IOC.NS">Indian Oil Corporation Ltd. (IOC.NS)</option>
+                    <option value="POWERGRID.NS">Power Grid Corporation of India Ltd. (POWERGRID.NS)</option>
+                    <option value="REC.NS">Rural Electrification Corporation Ltd. (REC.NS)</option>                    
+                    <option value="INDUSINDBK.BO">IndusInd Bank Ltd. (INDUSINDBK.BO)</option>
+                    <option value="INFY.BO">Infosys Ltd. (INFY.BO)</option>
+                    <option value="INFY.NS">Infosys Ltd. (INFY.NS)</option>
+                    <option value="INTC">Intel Corporation (INTC)</option>
+                    <option value="IOC.BO">Indian Oil Corporation Ltd. (IOC.BO)</option>
+                    <option value="IOC.BO">Indian Oil Corporation Ltd. (IOC.BO)</option>
+                    <option value="IOC.NS">Indian Oil Corporation Ltd. (IOC.NS)</option>
+                    <option value="IOC.NS">Indian Oil Corporation Ltd. (IOC.NS)</option>
+                    <option value="IOC.NS">Indian Oil Corporation Ltd. (IOC.NS)</option>
+                    <option value="JNJ">Johnson & Johnson (JNJ)</option>
+                    <option value="JSWSTEEL.BO">JSW Steel Ltd. (JSWSTEEL.BO)</option>
+                    <option value="JSWSTEEL.NS">JSW Steel Ltd. (JSWSTEEL.NS)</option>
+                    <option value="JPM">JPMorgan Chase & Co. (JPM)</option>
+                    <option value="KOTAKBANK.BO">Kotak Mahindra Bank Ltd. (KOTAKBANK.BO)</option>
+                    <option value="KOTAKBANK.NS">Kotak Mahindra Bank Ltd. (KOTAKBANK.NS)</option>
+                    <option value="KO">The Coca-Cola Company (KO)</option>
+                    <option value="KSS">Kohl's Corporation (KSS)</option>
+                    <option value="LULU">Lululemon Athletica Inc. (LULU)</option>
+                    <option value="LT.BO">Larsen & Toubro Ltd. (LT.BO)</option>
+                    <option value="LT.NS">Larsen & Toubro Ltd. (LT.NS)</option>
+                    <option value="LYFT">Lyft Inc. (LYFT)</option>
+                    <option value="LYFT-USD">Lyft Inc. (LYFT-USD)</option>
+                    <option value="LUNA1-USD">Terra (LUNA)</option>
+                    <option value="LUNA1-USD">Terra (LUNA)</option>
+                    <option value="LTC-USD">Litecoin (LTC)</option>
+                    <option value="LTC-USD">Litecoin (LTC)</option>
+                    <option value="LOW">Lowe's Companies Inc. (LOW)</option>
+                    <option value="LULU">Lululemon Athletica Inc. (LULU)</option>
+                    <option value="M">Macy's Inc. (M)</option>
+                    <option value="M&M.BO">Mahindra & Mahindra Ltd. (M&M.BO)</option>
+                    <option value="M&M.NS">Mahindra & Mahindra Ltd. (M&M.NS)</option>
+                    <option value="MA">Mastercard Incorporated (MA)</option>
+                    <option value="MCD">McDonald's Corporation (MCD)</option>
+                    <option value="MKR-USD">Maker (MKR)</option>
+                    <option value="MRNA">Moderna Inc. (MRNA)</option>
+                    <option value="MSFT">Microsoft Corporation (MSFT)</option>
+                    <option value="MSFT-USD">Microsoft Corporation (MSFT-USD)</option>
+                    <option value="M">Macy's Inc. (M)</option>
+                    <option value="M">Macy's Inc. (M)</option>
+                    <option value="MATIC-USD">Polygon (MATIC)</option>
+                    <option value="NEAR-USD">NEAR Protocol (NEAR)</option>
+                    <option value="NEO-USD">NEO (NEO)</option>
+                    <option value="NESTLEIND.BO">Nestle India Ltd. (NESTLEIND.BO)</option>
+                    <option value="NESTLEIND.NS">Nestle India Ltd. (NESTLEIND.NS)</option>
+                    <option value="NFLX">Netflix Inc. (NFLX)</option>
+                    <option value="NFLX-USD">Netflix Inc. (NFLX-USD)</option>
+                    <option value="NKE">NIKE Inc. (NKE)</option>
+                    <option value="NTPC.BO">NTPC Ltd. (NTPC.BO)</option>
+                    <option value="NTPC.BO">NTPC Ltd. (NTPC.BO)</option>
+                    <option value="NTPC.NS">NTPC Ltd. (NTPC.NS)</option>
+                    <option value="NTPC.NS">NTPC Ltd. (NTPC.NS)</option>
+                    <option value="NVDA">NVIDIA Corporation (NVDA)</option>
+                    <option value="NVDA-USD">NVIDIA Corporation (NVDA-USD)</option>
+                    <option value="ORCL">Oracle Corporation (ORCL)</option>
+                    <option value="ONGC.BO">Oil and Natural Gas Corporation Ltd. (ONGC.BO)</option>
+                    <option value="ONGC.NS">Oil and Natural Gas Corporation Ltd. (ONGC.NS)</option>
+                    <option value="PFE">Pfizer Inc. (PFE)</option>
+                    <option value="PFE">Pfizer Inc. (PFE)</option>
+                    <option value="PFE">Pfizer Inc. (PFE)</option>
+                    <option value="PG">Procter & Gamble Company (PG)</option>
+                    <option value="PTON">Peloton Interactive Inc. (PTON)</option>
+                    <option value="RELIANCE.BO">Reliance Industries Ltd. (RELIANCE.BO)</option>
+                    <option value="RELIANCE.NS">Reliance Industries Ltd. (RELIANCE.NS)</option>
+                    <option value="RIL.BO">Reliance Industries Ltd. (RIL.BO)</option>
+                    <option value="RIL.NS">Reliance Industries Ltd. (RIL.NS)</option>
+                    <option value="SBIN.BO">State Bank of India (SBIN.BO)</option>
+                    <option value="SBIN.BO">State Bank of India (SBIN.BO)</option>
+                    <option value="SBIN.NS">State Bank of India (SBIN.NS)</option>
+                    <option value="SBIN.NS">State Bank of India (SBIN.NS)</option>
+                    <option value="SHOP">Shopify Inc. (SHOP)</option>
+                    <option value="SNAP">Snap Inc. (SNAP)</option>
+                    <option value="SPOT">Spotify Technology S.A. (SPOT)</option>
+                    <option value="SPY">SPDR S&P 500 ETF Trust (SPY)</option>
+                    <option value="TATAMOTORS.BO">Tata Motors Ltd. (TATAMOTORS.BO)</option>
+                    <option value="TATAMOTORS.NS">Tata Motors Ltd. (TATAMOTORS.NS)</option>
+                    <option value="TATAMTRDVR.BO">Tata Motors Ltd. (TATAMTRDVR.BO)</option>
+                    <option value="TATAMTRDVR.NS">Tata Motors Ltd. (TATAMTRDVR.NS)</option>
+                    <option value="TCS.BO">Tata Consultancy Services Ltd. (TCS.BO)</option>
+                    <option value="TCS.NS">Tata Consultancy Services Ltd. (TCS.NS)</option>
+                    <option value="TSLA">Tesla Inc. (TSLA)</option>
+                    <option value="TSLA-USD">Tesla Inc. (TSLA-USD)</option>
+                    <option value="TWTR">Twitter Inc. (TWTR)</option>
+                    <option value="TWTR">Twitter Inc. (TWTR)</option>
+                    <option value="TATASTEEL.BO">Tata Steel Ltd. (TATASTEEL.BO)</option>
+                    <option value="TATASTEEL.NS">Tata Steel Ltd. (TATASTEEL.NS)</option>
+                    <option value="UBER">Uber Technologies Inc. (UBER)</option>
+                    <option value="UPL.BO">UPL Ltd. (UPL.BO)</option>
+                    <option value="UPL.NS">UPL Ltd. (UPL.NS)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="USD-INR">USD to INR (USD-INR)</option>
+                    <option value="V">Visa Inc. (V)</option>
+                    <option value="VG">Vonage Holdings Corp. (VG)</option>
+                    <option value="VOD.BO">Vodafone Idea Ltd. (VOD.BO)</option>
+                    <option value="VOD.BO">Vodafone Idea Ltd. (VOD.BO)</option>
+                    <option value="VOD.NS">Vodafone Idea Ltd. (VOD.NS)</option>
+                    <option value="VOD.NS">Vodafone Idea Ltd. (VOD.NS)</option>
+                    <option value="VZ">Verizon Communications Inc. (VZ)</option>
+                    <option value="WFC">Wells Fargo & Company (WFC)</option>
+                    <option value="WIPRO.BO">Wipro Ltd. (WIPRO.BO)</option>
+                    <option value="WIPRO.NS">Wipro Ltd. (WIPRO.NS)</option>
+                    <option value="WMT">Walmart Inc. (WMT)</option>
+                    <option value="WMT">Walmart Inc. (WMT)</option>
+                    <option value="WMT">Walmart Inc. (WMT)</option>
+                    <option value="WMT">Walmart Inc. (WMT)</option>
+                    <option value="WMT">Walmart Inc. (WMT)</option>
+                    <option value="WMT">Walmart Inc. (WMT)</option>
+                    <option value="WMT">Walmart Inc. (WMT)</option>
+                    <option value="XOM">Exxon Mobil Corporation (XOM)</option>
+                    <option value="XRP-USD">XRP (XRP)</option>
+                    <option value="ZM">Zoom Video Communications Inc. (ZM)</option>
+                   </select>
+                </div>
+                <div class="relative flex-grow w-full">
+                <label for="email" class="leading-7 text-sm text-gray-600">Choose Start-date for chart</label>
+                <input type="date" id="stock_date" name="stock_date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-white" required>
+                </div>
+            </div>  
+            <div class="text-center my-4">
+                <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">{% block button %} Predict {% endblock button %}</button>
+            </div>
+        </form>
+
+        <div class="flex flex-col text-center w-full mb-12 text-gray-900">
+            {% if output %}
+            <h2 style="font-size: 24px; font-weight: bold;"> Stock Name: {{ stock_name}} </h2>
+            <h2 style="font-size: 24px; font-weight: bold;"> Current Stock Price: {{ current_price }}</h2>
+            <h2 style="font-size: 24px; font-weight: bold;"> Prediction: {{ output }}</h2>
+            <section class="text-gray-600 body-font">
+              <div class="container px-5 py-24 mx-auto flex flex-wrap">
+                <div class="lg:w-2/3 mx-auto">
+                  <div class="flex flex-wrap w-[970px] h-[700px] bg-gray-100 py-32 px-10 relative mb-4 border-2 border-gray-900">
+                    <img alt="gallery" class="w-full object-cover h-full object-center block opacity-100 absolute inset-0" src="/static/candle.png">
+                      <a href="/fullCandle?stock_name={{ request.POST.stock_name }}&stock_date={{ request.POST.stock_date }}">
+                        <span class="absolute top-0 right-0 mt-2 mr-2">
+                          <!-- Add your expand icon here -->
+                          <img alt="expand" src="/static/expand-svgrepo-com.svg" title="click to expand" class="w-12 h-12 flex-shrink-0 object-cover object-center opacity-60">
+                        </span>
+                      </a>
+                  </div>
+                  <div class="flex flex-wrap -mx-2">
+                    <div class="px-2 w-1/2">
+                      <div class="flex flex-wrap w-[440px] h-[350px] bg-gray-100 sm:py-24 py-16 sm:px-10 px-6 relative border-2 border-gray-900">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block opacity-100 absolute inset-0" src="/static/comparison.png">
+                      </div>
+                    </div>
+                    <div class="px-2 w-1/2">
+                      <div class="flex flex-wrap w-[520px] h-[350px] bg-gray-100 sm:py-24 py-16 sm:px-10 px-6 relative border-2 border-gray-900">
+                        <img alt="gallery" class="w-full object-cover h-full object-center block opacity-100 absolute inset-0" src="/static/prediction.png">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {% endif %}
+        </div>
+    </div>
+  </section>
+
+{% endblock body %}
