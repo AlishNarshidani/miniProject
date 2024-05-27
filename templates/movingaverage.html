@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Linear Prediction{% endblock title %}
+{% block title %}Moving Average{% endblock title %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
       <div class="flex flex-col text-center w-full mb-12">
         <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">{% block heading %} Stock Price Prediction {% endblock heading %} </h1>
       </div>
-        <form action= {% block redirect_link %} "/prediction/linearprediction" {% endblock redirect_link %} method="post">
+        <form action= {% block redirect_link %} "/prediction/movingaverage" {% endblock redirect_link %} method="post">
             {% csrf_token %}
             <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
                 <div class="relative flex-grow w-full">
@@ -238,18 +238,6 @@
                           <img alt="expand" src="/static/expand-svgrepo-com.svg" title="click to expand" class="w-12 h-12 flex-shrink-0 object-cover object-center opacity-60">
                         </span>
                       </a>
-                  </div>
-                  <div class="flex flex-wrap -mx-2">
-                    <div class="px-2 w-1/2">
-                      <div class="flex flex-wrap w-[440px] h-[350px] bg-gray-100 sm:py-24 py-16 sm:px-10 px-6 relative border-2 border-gray-900">
-                        <img alt="gallery" class="w-full object-cover h-full object-center block opacity-100 absolute inset-0" src="/static/comparison.png">
-                      </div>
-                    </div>
-                    <div class="px-2 w-1/2">
-                      <div class="flex flex-wrap w-[520px] h-[350px] bg-gray-100 sm:py-24 py-16 sm:px-10 px-6 relative border-2 border-gray-900">
-                        <img alt="gallery" class="w-full object-cover h-full object-center block opacity-100 absolute inset-0" src="/static/prediction.png">
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -1,3 +1,30 @@
 {% extends "base.html" %}
 
 {% block title %}Watch List{% endblock title %}
+
+{% block body %}
+    <h1 style="text-align: center; font-size: 2em; margin-top: 70px; margin-bottom: 70px;">Create Notification</h1>
+    <div style="display: flex; justify-content: center;">
+        <form method="post" style="width: 50%; display: flex; flex-direction: column; align-items: center;">
+            {% csrf_token %}
+            <div style="margin-bottom: 35px;">
+                <label>{{ form.stock_name.label }}:</label>
+                {{ form.stock_name }}
+                {% if form.stock_name.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.stock_name.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div style="margin-bottom: 35px;">
+                <label>{{ form.target_price.label }}:</label>
+                {{ form.target_price }}
+            </div>
+            <div style="margin-bottom: 35px;">
+                <label>{{ form.price_direction.label }}:</label>
+                {{ form.price_direction }}
+            </div>
+            <button type="submit" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" style="margin-bottom: 70px;">Submit</button>
+        </form>
+    </div>
+{% endblock body %}
